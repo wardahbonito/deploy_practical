@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        h1{color: blue;}
+        body {
+            background-color: rgb(219, 228, 35);
+        }
+        img {border: solid 5px rgb(227, 17, 17);
+            border-radius: 5px;
+            }
+        form {margin-left: 50px;}
+        table,th,td {border: solid 2px black;
+            border-collapse: collapse;}
+    
+        h2{color: rgb(20, 20, 227);}
+        td { padding-left: 15px;}
+        th { background-color: darkgreen;
+            color: white;}
+    </style>
+</head>
+<body>
+    {% load static %}
+    <center> <h1>MENU DESCRIPTION</h1></center>
+    <br>
+    <center><img heigt="50%" width="50%" src="{% static "picture/image1.jpg" %}" alt="home" /></center>
+    <br><br>
+
+   <center> <form  action="desc" method="post">
+        {% csrf_token %}
+            Name: <input name="name" type="text">
+            <br><br>
+            Describe: <input name="text" type="text">
+            <br><br>
+            <input type="submit" value="SAVE">
+    </form></center>
+    
+    <center> <h2><a href = "/restaurant">Homepage</a></h2></center>
+<center> <h2>Menu Description</h2> </center>
+<center> <p>
+    <table>
+        <tr>
+            <th width="150px"> Menu Name</th>
+            <th width="700px">Description</th>
+        </tr>
+        {% for data in allcomment %}
+        <tr>
+            <td>{{data.name}}</td>
+            <td>{{data.text}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+ 
+</p></center>
+</body>
+</html>
